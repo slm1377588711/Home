@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>window对象</title>
+</head>
+<body>
+    <p>BOM的核心是window，BOM是浏览器的一个实例。window对象是javascript访问浏览器窗口
+        的一个接口，也是全局对象
+    </p>
+    <p>义全局变量与在 window 对象上直接定义属性还
+        是有一点差别：全局变量不能通过 delete 操作符删除，而直接在
+        window 对象上的定义的属性可以。
+    </p>
+    获得页面视口的大小
+    <script>
+       // 对于移动设备， window.innerWidth 和 window.innerHeight 保存着可见视口，也就是屏幕上可
+       // 见页面区域的大小。
+       /*在其他移动浏览器中， document.documentElement 度量的是布局视口，即渲染后页面的实际大
+        小（与可见视口不同，可见视口只是整个页面中的一小部分）。移动 IE 浏览器把布局视口的信息保存在
+        document.body.clientWidth 和document.body.clientHeight 中。这些值不会随着页面缩放变化。*/
+        var pageWidth = window.innerWidth,
+                pageHeight = window.innerHeight;
+        if(typeof pageWidth !== "number"){
+            //判断页面是否处于标准模式
+            if(document.compatMode == "CSS1Compat"){
+                pageWidth = document.documentElement.clientWidth;
+                pageHeight = document.documentElement.clientHeight;
+            }else{
+                pageWidth = document.body.clientWidth;
+                pageHeight = document.body.clientHeight;
+            }
+        }
+       //会跟随浏览器窗口变化而变化
+        console.log(pageWidth);
+        console.log(pageHeight);
+
+        //导航和打开新窗口
+    window.open("http://www.baidu.com","topFrame");
+    </script>
+    <a href='http://www.baidu.com' target="topFrame">百度一下</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

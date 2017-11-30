@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器</title>
+    <style>
+        #setTimeout{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: #f0f;
+        }
+        button{
+            position: relative;
+            border: 0px;
+            background-color: antiquewhite;
+            width: 200px;
+            height: 40px;
+            border-radius: 5px;
+            margin-top: 220px;
+        }
+    </style>
+</head>
+<body>
+    <div id="setTimeout">
+    </div>
+    <button>停止反复</button>
+<script src="commJS/jquery-3.0.0.min.js"></script>
+<script>
+    var myFunction = function () {
+        $("#setTimeout").animate({left:"+=200px",top:"+=200px"},1000);
+        $("#setTimeout").animate({left:"0px",top:"-=200px"},1000);
+    }
+    $("#setTimeout").fadeOut(1000).delay(4000).fadeIn(1000);
+    setTimeout(myFunction(),1000);
+    var cle= setInterval(myFunction,2000);
+    clearInterval(cle);
+
+</script>
+</body>
+</html>

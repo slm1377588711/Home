@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量的解构赋值</title>
+</head>
+<body>
+
+   <script>
+       /*
+       * 解构赋值对提前JSON对象中的值尤其有用
+       * */
+       var jsonData = {
+           id:0001,
+           status:"Ok",
+           data:[66,77]
+       }
+       let {id,status,data:number}=jsonData;
+       console.log(id,status,number);
+       /*
+       * 遍历Map结构集合
+       * */
+       var map = new Map();
+       map.set('first','hello');
+       map.set('second','world');
+        for(let [key, value] of map){
+            console.log(key + " is " +value);
+        }
+       //只获取键名
+       for(let [key] of map){
+            console.log(key);
+       }
+       //只获取值名
+       for(let [,value] of map){
+           console.log(value);
+       }
+   </script>
+</body>
+</html>

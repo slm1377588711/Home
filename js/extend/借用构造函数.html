@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>借用构造函数继承</title>
+</head>
+<body>
+    <script>
+        function SuperType(){
+            this.color = ["red","blue","green"];
+        }
+        //继承了SuperType
+        function SubType(){
+            SuperType.call(this);
+        }
+        var instance1 = new SubType();
+        instance1.color.push("black");
+        console.log("子类型继承了超级类型的color属性，并添加了一个属性值："+instance1.color);
+
+
+        var instance2 = new SubType();
+        console.log(instance2.color);
+*/
+        /*传递参数*/
+
+        function SuperType(name){
+            this.name = name;
+        }
+        function SubType(){
+            SuperType.call(this,"Nicholas");
+            this.age = 19;
+        }
+        var instance = new SubType();
+        console.log("继承的name属性是"+instance.name+",自身的属性age的值是："+instance.age);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

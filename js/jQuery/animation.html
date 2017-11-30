@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <style>
+        #fade{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            display: none;
+        }
+        #slide{
+            width: 200px;
+            height: 200px;
+            background-color: #00f;
+        }
+    </style>
+</head>
+<body>
+    <div id="fade">淡入淡出</div>
+   <!-- <div id="slide">滑动</div>-->
+    <script src="commJS/jquery-3.0.0.min.js"></script>
+<script>
+    $(function(){
+        $("#fade").fadeIn(250).fadeOut(250);
+        $("#fade").fadeIn("fast").fadeOut("fast");
+        $("#slide").slideUp().slideDown();
+        $("#slide").slideToggle();
+        $("#slide").animated("left");
+
+    })
+</script>
+</body>
+</html>

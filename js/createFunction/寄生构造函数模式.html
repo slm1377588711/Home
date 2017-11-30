@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工厂模式</title>
+</head>
+<body>
+    <script>
+        function Person(name,age,job){
+            var o = new Object();
+            o.name = name;
+            o.age = age;
+            o.job = job;
+            o.sayName = function(){
+                alert(this.name);
+            }
+            return o;
+        }
+        var person1 = new Person("Nicholas",18,"Software Engineer");
+        person1.sayName();
+        /*
+        * 与工厂模式一模一样，除了使用new操作并把使用的包装函数叫做构造函数之外。
+        * 这个模式可以在特殊的情况下用来为对象创建构造函数*/
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

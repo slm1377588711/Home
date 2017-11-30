@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>寄生组合式继承</title>
+</head>
+<body>
+    组合继承最发的问题就是无论什么情况下，都会调用两次超类型构造函数：
+    一次是在创建子类型原型的时候，另一次是在子类型构造函数内部。
+    子类型最终会包含超类型的全部实例属性，但我们不得不在调用子类型
+    构造函数时重写这些属性
+
+
+    寄生组合式继承通过借用构造函数来继承属性，通过原型链的混成形式来继承方法
+    基本思路：不必为了指定子类型的原型而调用超类型的构造函数，我们所需要的就
+    是超类型原型的一个副本而已。本质上就是使用寄生式继承来继承超类型的原型，
+    然后再将结果指定给子类型的原型
+    <script>
+        function object(o){
+            function F(){}
+            F.prototype=o;
+            return new F();
+        }
+       function inheritPrototype(subType,superType){
+           var prototype = object(superType.prototype);//创建对象
+           prototype.constructor = subType; //增强对象
+           subType.prototype = prototype;//指定对象
+       }
+       /* 1、创建超类型原型的一个副本
+        2、创建的副本constructor属性
+        3、将新创建的对象赋值给子类型的原型*/
+
+
+
+        //
+
+        function SuperType(name){
+            this.name = name;
+            this.colors = ["red", "blue", "green"];
+        }
+        SuperType.prototype.sayName = function(){
+            alert(this.name);
+        };
+        function SubType(name, age){
+            SuperType.call(this, name);
+            this.age = age;
+        }
+        inheritPrototype(SubType, SuperType);
+        SubType.prototype.sayAge = function(){
+            alert(this.age);
+        };
+        var instance = new SubType("slm",19);
+        instance.sayName();
+
+
+        /*
+        * 超类型中有name、color属性，原型中有sayName方法
+        * 子类型中有age属性，原型中有sayAge方法，但是，子类型继承了超类型。
+        * 最终，子类型也可以使用sayName方法
+        * */
+
+
+
+
+
+    </script>
+    小结   ：
+
+    工厂模式，使用简单的函数创建对象，为对象添加属性和方
+    法，然后返回对象。这个模式后来被构造函数模式取代
+
+    构造函数模式，可以创建自定义引用类型，可以创建内置对
+    象实例一样使用new操作符。缺点是每个成员呢都无法得到
+    复用。包括函数
+
+
+    原型模式，使用构造函数的prototype属性来指定那些应
+    该共享的属性和方法。组合使用构造函数模式和原型模式
+    时，使用构造函数定义实例属性，而使用原型定义共享的
+    属性和方法
+
+
+继承
+    原型式继承，可以在不必先定义构造函数的情况下实现继承
+    ，其本质是执行对给定队形的浅复制。二复制得到的副本还
+    可以得到进一步改造。
+
+    寄生式继承，与原型继承非常相似，也是基于某个对象或某
+    些信息创建一个对象，然后增强对象，最后返回对象。可以
+    将这个模式和组合继承一起使用。
+    寄生组合式继承，集寄生式继承和组合继承的优点与一身，是实现基于类型继承的最有效方式。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

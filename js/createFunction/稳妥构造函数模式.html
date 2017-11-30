@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工厂模式</title>
+</head>
+<body>
+<!--
+    稳妥对象在一些安全环境中（禁止使用this和new），或者在放置数据被其他应用程序改动时使用
+    与寄生构造函数类似，两点不同：1.新创建对象的实例方法不引用this2.不适用new操作符调用构造函数
+-->
+    <script>
+        function Person(name,age,job){
+            var o = new Object();
+            o.sayName = function(){
+                alert(name);
+            }
+            return o;
+        }
+        var person1 = Person("Nicholas",18,"Software Engineer");
+        person1.sayName();
+        /*
+        * 这样除了调用sayName()方法外，没有别的方式可以访问其数据成员*/
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

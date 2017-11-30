@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包与变量</title>
+</head>
+<body>
+
+    <script>
+        /*外部无法访问局部变量*/
+        /*fun2函数，就是闭包*/
+        function createFunction(){
+            var num = [1,2];
+            function fun2(){
+                console.log(num);//内部函数可以访问外部函数属性
+            }
+            return fun2();//返回fun2外部就可以取到num的值了
+        }
+        createFunction();
+
+
+
+        /*闭包的用途：读取内部函数属性；另一个就是让这些变量的值始终保持在内存中*/
+    </script>
+</body>
+</html>

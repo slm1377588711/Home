@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数模式</title>
+</head>
+<body>
+    <script>
+        function Person(name,age,job){
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.sayName = function(){
+                alert(this.name);
+            }
+        }
+        var person1 = new Person("Nicholas",18,"Software Engineer");
+        var person2 = new Person("Greg",27,"Doctor");
+        /*
+        * 没有显式地创建对象；
+          直接将属性和方法赋给了 this 对象；
+          没有 return 语句。
+        *
+        * 构造函数名Person使用大写字符开头，创建他的实例，必须使用new操作符
+        * (1)创建一个新对象；
+         (2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象）；
+         (3) 执行构造函数中的代码（为这个新对象添加属性）；
+         (4) 返回新对象。
+        * */
+        //person1和person2分别保存着Person的一个不同的实例，这两个对象都有一个Constructor属性，该属性指向Person，如下所示。
+        alert(person1.constructor == Person);//true
+        alert(person2.constructor == Person);//true
+        //对象的constructor属性最初是用来标识对象类型的，检测对象类型还是用instanceof操作符
+        alert(person1 instanceof Object);//是Object的实例
+        alert(person1 instanceof Person);//是Person的实例
+        alert(person2 instanceof Object);//是Object的实例
+        alert(person2 instanceof Person);//是Person的实例
+        //将构造函数当做函数，调用的方法有：
+        //构造函数调用
+        var person = new Person("Nich",21,"Software Engineer");
+        person.sayName();
+        //作为普通函数调用
+        Person("Nich",21,"Software Engineer");
+        window.sayName();
+        //在另一个对象的作用域中调用
+        var o = new Objet();
+        Person.call(o,"Kristen",25,"Nurse");
+        o.sayName();
+
+    /*构造函数的缺点。每个方法都要在每个实例上重新创建一遍，sayName()在两个实例中个创建了一次，
+    * 函数就是对象，因此，每定义一个函数就实例化了一个对象，然而，创建两个完成同样任务的函数实例
+    * 的确没必要，况且有this对象在，不需要再执行代码前就把函数绑定在特定对象上面。可以把sayName()
+    * 定义在构造函数外，构造函数中就写一个属性指向外部的sayName函数，写成下面这样*/
+        function Person(name, age, job){
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            this.sayName = sayName;
+        }
+        function sayName(){
+            alert(this.name);
+        }
+        var person1 = new Person("Nicholas", 29, "Software Engineer");
+        var person2 = new Person("Greg", 27, "Doctor");
+        /*
+        * 但是这样的问题是：在全局作用域中定义的函数实际上只能被某个对象调用，折让全局作用域有点名不副实，
+        * 如果对象需要定义很对方法，那么就要定义很多和全局函数。我们自定义的引用类型就没有封装性可言了。
+        * */
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
